@@ -1,0 +1,14 @@
+Requirements
+
+Node
+NPM
+MonogDB
+
+Steps to run the mock request handling server
+
+Clone the project
+Install the packages
+    >> npm Install
+Connect the mongodb. Update the corresponfing details in server.js
+Run the server
+    >> npm start
