@@ -6,6 +6,7 @@ var Schema = mongoose.Schema;
 var ResponseSchema = new Schema({
   name: {
     type: String,
+    unique: true,
     required: 'Response name is required'
   },
   Created_date: {

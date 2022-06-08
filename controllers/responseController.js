@@ -1,19 +1,19 @@
 'use strict';
 
 
-var mongoose = require('mongoose'),
-    Response = mongoose.model('Response');
+let mongoose = require('mongoose');
+let Response = mongoose.model('Response');
 
 exports.getAllResponses = function (req, res) {
     Response.find({}, function (err, response) {
         if (err)
             res.send(err);
+        response.map(el => {
+            el._doc.response = JSON.parse(el._doc.response);
+        });
         res.json(response);
     });
 };
-
-
-
 
 exports.createResponse = function (req, res) {
     console.log(req.body);
@@ -21,7 +21,7 @@ exports.createResponse = function (req, res) {
     var newResponse = new Response(req.body);
     newResponse.save(function (err, response) {
         if (err)
-            res.send(err);
+            res.status(500).json(err);
         res.json(response);
     });
 };
@@ -31,6 +31,7 @@ exports.getResponse = function (req, res) {
     Response.findById(req.params.responseId, function (err, response) {
         if (err)
             res.send(err);
+        response._doc.response = JSON.parse(response._doc.response);
         res.json(response);
     });
 };
