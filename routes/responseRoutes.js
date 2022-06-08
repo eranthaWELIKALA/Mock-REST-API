@@ -3,7 +3,7 @@ module.exports = function (app) {
     var responseController = require('../controllers/responseController');
 
     app.get('/', (req, res) => {
-        res.send("Welcome to Test API by Erantha Welikala");
+        res.send("Welcome to Mock REST API by Erantha Welikala");
     });
 
     // todoList Routes
