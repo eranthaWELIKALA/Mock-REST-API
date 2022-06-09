@@ -4,32 +4,68 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>Mock REST API</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <style>
+        .alert {
+            position: absolute;
+            left: 30vw;
+            right: 30vw;
+            top: 0;
+            z-index: 1;
+        }
+    </style>
 </head>
 
-<body>
+<body class="bg-primary">
+    <div class="d-flex failure d-none">
+        <div class="alert alert-danger fade show text-center" role="alert">
+            <strong>Error Occurred</strong>
+        </div>
+    </div>
+    <div class="d-flex success d-none">
+        <div class="alert alert-success fade show text-center" role="alert">
+            <strong>Success</strong>
+        </div>
+    </div>
     <div class="container">
-        <h1 class="text-center">Mock REST API</h1>
+        <h1 class="text-center mt-5">Mock REST API</h1>
         <div class="card">
             <div class="card-body">
                 <h2 class="card-title text-center">Upload JSON file with responses</h2>
                 <form id="responseForm" class="form-group m-3" onsubmit="upload(event)">
-                    <div class="row my-5">
+                    <div class="row mt-5">
                         <div class="col-4">Response Name</div>
                         <div class="col-8">
                             <input class="form-control" type="text" name="responseName">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row mt-2">
                         <div class="col-4">JSON File</div>
                         <div class="col-8">
                             <input class="form-control" type="file" accept=".json" name="jsonFile">
                         </div>
                     </div>
+                    <div class="row mt-2">
+                        <div class="col-4">Mark as Selected</div>
+                        <div class="col-8">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="isSelected" id="yes" checked>
+                                <label class="form-check-label" for="isSelected1">
+                                    Yes
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="isSelected" id="no">
+                                <label class="form-check-label" for="isSelected2">
+                                    No
+                                </label>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
-                        <div class="col-3 offset-9">
+                        <div class="col-md-3 offset-md-9 col-6 offset-6">
                             <input class="form-control btn btn-primary" type="submit" value="Upload">
                         </div>
                     </div>
@@ -43,16 +79,20 @@
             const form = document.getElementById('responseForm');
             let responseName = e.target[0].value;
             let files = e.target[1].files;
+            let isSelected = e.target[2].checked ? true : false;
+            console.log(isSelected);
             if (files.length == 0 || !responseName || responseName == "") {
                 form.reset();
+                $(".failure").removeClass("d-none");
+                $(".d-flex").delay(4000).slideUp(200, function () {
+                    $(this).addClass("d-none");
+                });
                 return false;
             }
             let fileReader = new FileReader();
 
             fileReader.onload = function (ev) {
                 let result = JSON.parse(ev.target.result);
-                console.log(`${window.location}api/response`);
-                console.log(result);
                 $.ajax({
                     method: 'POST',
                     url: `${window.location}api/response`,
@@ -63,7 +103,10 @@
                     },
                     dataType: 'json',
                     success: function (response) {
-                        alert("Request success: " + response);
+                        $(".success").removeClass("d-none");
+                        $(".d-flex").delay(4000).slideUp(200, function () {
+                            $(this).addClass("d-none");
+                        });
                         form.reset();
                     },
                     error: function (error) {
