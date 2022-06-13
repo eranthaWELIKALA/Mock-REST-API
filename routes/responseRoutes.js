@@ -4,9 +4,10 @@ const express = require('express');
 const app = express.Router();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
+const path = require('path');
 
 app.get('/routes', (req, res) => {
-    response.sendFile(express.static(path.join(__dirname, 'public', 'routes.html')));
+    res.sendFile(express.static(path.join(__dirname, 'public', 'routes.html')));
 });
 
 // todoList Routes
