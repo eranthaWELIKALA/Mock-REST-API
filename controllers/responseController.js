@@ -18,7 +18,13 @@ exports.getAllResponses = function (req, res) {
 exports.createResponse = function (req, res) {
     console.log(req.body);
     req.body.response = JSON.stringify(req.body.response);
-    var newResponse = new Response(req.body);
+    let newResponse = new Response(req.body);
+    if (newResponse.isSelected) {
+        Response.updateMany({ isSelected: true }, { isSelected: false }, function (err, response) {
+            if (err)
+                res.send(err);
+        });
+    }
     newResponse.save(function (err, response) {
         if (err)
             res.status(500).json(err);
@@ -38,6 +44,12 @@ exports.getResponse = function (req, res) {
 
 
 exports.updateResponse = function (req, res) {
+    if (req.body.isSelected) {
+        Response.updateMany({ isSelected: true }, { isSelected: false }, function (err, response) {
+            if (err)
+                res.send(err);
+        });
+    }
     Response.findOneAndUpdate({ _id: req.params.responseId }, req.body, { new: true }, function (err, response) {
         if (err)
             res.send(err);

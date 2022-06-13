@@ -5,8 +5,8 @@ const app = express.Router();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-    res.send("Welcome to Mock REST API by Erantha Welikala");
+app.get('/routes', (req, res) => {
+    response.sendFile(express.static(path.join(__dirname, 'public', 'routes.html')));
 });
 
 // todoList Routes

@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 let routes = require('./routes/responseRoutes'); //importing route
-app.use("/api", routes);
+app.use("/", routes);
 
 
 app.listen(port);
