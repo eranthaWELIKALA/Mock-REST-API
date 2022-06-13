@@ -1,8 +1,8 @@
 pipeline {
     agent { label 'aws_ec2' }
     environment {
-        DOCKERHUB_CREDENTIALS = credentials('00a7feb1-0f7b-40c6-be79-267f4b30985a')
-        BITBUCKET_CREDENTIAL_ID = '61822e92-06e7-495a-9fb2-7b9455374316'
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
+        BITBUCKET_CREDENTIAL_ID = 'bitbucket'
         BITBUCKET_REPO_URL = 'https://eranthaw@bitbucket.org/eranthaw/mock-rest-api.git'
     }
 
@@ -20,7 +20,7 @@ pipeline {
 
         stage('dockerhub login') {
             steps {
-                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_UDR --password-stdin'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | sudo docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
 
