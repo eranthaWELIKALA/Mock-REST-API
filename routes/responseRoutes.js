@@ -7,7 +7,7 @@ app.use(bodyParser.json());
 const path = require('path');
 
 app.get('/routes', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'routes.html'));
+    res.sendFile(path.join('/usr/src/app/public/routes.html'));
 });
 
 // todoList Routes
