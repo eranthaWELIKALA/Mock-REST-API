@@ -12,6 +12,12 @@ pipeline {
                 git branch: 'main', credentialsId: BITBUCKET_CREDENTIAL_ID, url: BITBUCKET_REPO_URL
             }
         }
+        stage('SonarQube Analysis') {
+            def scannerHome = tool 'SonarScanner'
+            withSonarQubeEnv() {
+                sh "${scannerHome}/bin/sonar-scanner"
+            }
+        }
         stage('docker build') {
             steps {
                 sh 'sudo docker build -t eranthawelikala/mock-rest-api:latest .'
@@ -35,5 +41,17 @@ pipeline {
         always {
             sh 'docker logout'
         }
+        success {
+            echo 'Succeeded!'
+            sendSuccessEmail()
+        }
     }
+}
+
+void sendSuccessEmail() {
+    emailext to: 'eranthawelikala@gmail.com',
+      subject: "Status: ${currentBuild.result} - Job \'${env.JOB_BASE_NAME}:${env.BUILD_NUMBER}\'",
+      body: """<p>Job <b>\'${env.JOB_BASE_NAME}:${env.BUILD_NUMBER} Status: ${currentBuild.result}\'
+      </b></p><p>Environment updated with docker image version : ${env.VERSION_NO}</p>""",
+      replyTo: 'do-not-reply@company.com'
 }
