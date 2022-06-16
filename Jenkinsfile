@@ -3,8 +3,8 @@ node {
     checkout scm
   }
   stage('SonarQube Analysis') {
-    def scannerHome = tool 'SonarScanner';
-    withSonarQubeEnv('SonarQube Scanner for Jenkins Version2.14') {
+    def scannerHome = tool 'SonarQube Scanner for Jenkins Version2.14';
+    withSonarQubeEnv('SonarScanner') {
       sh "${scannerHome}/bin/sonar-scanner"
     }
   }
