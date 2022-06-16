@@ -5,12 +5,14 @@ const express = require('express'),
     Response = require('./models/Response'),
     path = require('path');
 
+app.disable("x-powered-by");
+
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://host.docker.internal/response_handler');
 
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname, 'public')));
