@@ -4,7 +4,7 @@ node {
   }
   stage('SonarQube Analysis') {
     def scannerHome = tool 'SonarScanner';
-    withSonarQubeEnv('SonarScanner') {
+    withSonarQubeEnv('SonarQube Scanner for Jenkins Version2.14') {
       sh "${scannerHome}/bin/sonar-scanner"
     }
   }
