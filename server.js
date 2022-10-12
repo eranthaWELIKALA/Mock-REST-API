@@ -1,5 +1,6 @@
+require("dotenv").config();
 const express = require('express'),
-    app = express(),
+    app = express()
     port = process.env.PORT || 3000,
     mongoose = require('mongoose'),
     Response = require('./models/Response'),
@@ -9,7 +10,7 @@ app.disable("x-powered-by");
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://host.docker.internal/response_handler');
+mongoose.connect(process.env.MONGODB_SERVER + '/mock-rest-api' || 'mongodb://host.docker.internal/response_handler');
 
 
 app.use(express.urlencoded({ extended: true }));
@@ -24,3 +25,4 @@ app.use("/", routes);
 app.listen(port);
 
 console.log('RESTful API server started on: ' + port);
+console.log('MongoDB server: ' + process.env.MONGODB_SERVER + '/mock-rest-api');

@@ -91,6 +91,7 @@ exports.sendResponse = function (req, res) {
     Response.findOne({ isSelected: true }, function (err, response) {
         if (err)
             res.send(err);
-        res.json(JSON.parse(response.response));
+        if (response) res.json(JSON.parse(response.response));
+        else res.json(null);
     });
 };

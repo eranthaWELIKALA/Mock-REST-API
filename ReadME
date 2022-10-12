@@ -12,3 +12,7 @@ Install the packages
 Connect the mongodb. Update the corresponfing details in server.js
 Run the server
     >> npm start
+
+
+Docker Run
+docker run --name=mock-rest-api -it -p 3000:3000 eranthawelikala/mock-rest-api:latest

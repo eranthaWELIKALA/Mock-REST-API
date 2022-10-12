@@ -2,8 +2,8 @@
 const responseController = require('../controllers/responseController');
 const express = require('express');
 const app = express.Router();
-const bodyParser = require('body-parser');
-app.use(bodyParser.json());
+// const bodyParser = require('body-parser');
+// app.use(bodyParser.json());
 const path = require('path');
 
 app.get('/routes', (req, res) => {
