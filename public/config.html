@@ -95,7 +95,7 @@
                 let result = JSON.parse(ev.target.result);
                 $.ajax({
                     method: 'POST',
-                    url: `${window.location}response`,
+                    url: `${window.location.origin}/response`,
                     data: {
                         "name": responseName,
                         "response": result,
