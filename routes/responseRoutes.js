@@ -6,8 +6,12 @@ const app = express.Router();
 // app.use(bodyParser.json());
 const path = require('path');
 
-app.get('/routes', (req, res) => {
-    res.sendFile(path.join('/usr/src/app/public/routes.html'));
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'routes.html'));
+});
+
+app.get('/config', (req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'config.html'));
 });
 
 // todoList Routes

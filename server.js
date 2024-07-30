@@ -10,7 +10,10 @@ app.disable("x-powered-by");
 
 // mongoose instance connection url connection
 mongoose.Promise = global.Promise;
-mongoose.connect(process.env.MONGODB_SERVER + '/mock-rest-api' || 'mongodb://host.docker.internal/response_handler');
+mongoose.connect(`${process.env.MONGODB_SERVER}` || 'mongodb://host.docker.internal/response_handler', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  });
 
 
 app.use(express.urlencoded({ extended: true }));

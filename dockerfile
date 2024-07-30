@@ -1,4 +1,4 @@
-FROM node:latest
+FROM alpine
 
 WORKDIR /usr/src/app
 COPY . /usr/src/app

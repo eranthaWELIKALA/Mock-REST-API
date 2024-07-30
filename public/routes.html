@@ -5,8 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Mock REST API</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
     <style>
         .alert {
             position: absolute;
@@ -20,43 +19,40 @@
 
 <body class="bg-primary">
     <div class="container">
-        <h1 class="text-center mt-5">Mock REST API</h1>
-        <div class="card">
+        <h1 class="text-center mt-5 text-white">Mock REST API</h1>
+        <div class="card mt-5">
             <div class="card-body">
                 <h2 class="card-title text-center">Available Routes</h2>
-                <div class="row">
-                    <div class="row">
-                        <div class="col">/response</div>
-                        <div class="col">
-                            <div class="row">Create response with POST requests, Retrieve the selected response with GET
-                            request</div>
-                            <div class="row">
-                                {<br>
-                                    &emsp;response: response object: Object | Array, <br>
-                                    &emsp;name: name for the response: String, <br>
-                                    &emsp;isSelected: whether this value should be marked as the selected response: boolean (true| false), <br>
-                                }
-                            </div>
-                            <div class="row">
-                                You can use UI as well to insert responses
-                            </div>
-                        </div>
+                <div class="row mt-4">
+                    <div class="col-12 mb-3">
+                        <h5 class="fw-bold"><a href="/config/">/config</a></h5>
+                        <p>Add json objects using the user interface</p>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col">/response/:responseId</div>
-                    <div class="col">GET request with response Id, this will return the response for the Id</div>
-                </div>
-                <div class="row">
-                    <div class="col">/select/:responseId</div>
-                    <div class="col">GET request with response Id, this will mark the reponse as the selected response</div>
+                    <div class="col-12 mb-3">
+                        <h5 class="fw-bold">/response</h5>
+                        <p>Create response with POST requests, Retrieve the selected response with GET request</p>
+                        <pre>
+{
+    response: response object: Object | Array,
+    name: name for the response: String,
+    isSelected: whether this value should be marked as the selected response: boolean (true | false),
+}
+                        </pre>
+                        <p>You can use UI as well to insert responses</p>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <h5 class="fw-bold">/response/:responseId</h5>
+                        <p>GET request with response Id, this will return the response for the Id</p>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <h5 class="fw-bold">/select/:responseId</h5>
+                        <p>GET request with response Id, this will mark the response as the selected response</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
-        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 
 </html>
